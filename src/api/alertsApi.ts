@@ -1,5 +1,5 @@
 import apiClient from './client';
-import { Alert } from '../types/alert';
+import type { Alert } from '../types/alert';
 
 export const getAlerts = async (limit: number = 50, offset: number = 0): Promise<Alert[]> => {
   const response = await apiClient.get<Alert[]>('/alerts/', {

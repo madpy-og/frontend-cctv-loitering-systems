@@ -1,5 +1,5 @@
 import apiClient from './client';
-import { Zone, ZoneCreate, ZoneUpdate } from '../types/zone';
+import type { Zone, ZoneCreate, ZoneUpdate } from '../types/zone';
 
 export const getZones = async (): Promise<Zone[]> => {
   const response = await apiClient.get<Zone[]>('/zones/');

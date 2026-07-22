@@ -1,1 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap");
 @import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "DM Serif Display", serif;
+
+    --text-capt: 11.1px;
+    --text-bs: 13.3px;
+    --text-bd: 16px;
+    --text-bl: 18px;
+    --text-h6: 19.2px;
+    --text-h5: 23px;
+    --text-h4: 27.6px;
+    --text-h3: 33.2px;
+    --text-h2: 39.8px;
+    --text-h1: 47.8px;
+    --text-capt-m: 8.9px;
+    --text-bs-m: 10.7px;
+    --text-bd-m: 12.8px;
+    --text-bl-m: 14.4px;
+    --text-h6-m: 15.4px;
+    --text-h5-m: 18.4px;
+    --text-h4-m: 22.1px;
+    --text-h3-m: 26.5px;
+    --text-h2-m: 31.8px;
+    --text-h1-m: 38.2px;
+    --color-cusdarkblack: #020202;
+    --color-cusblack: #2C2C2C;
+    --color-cuslightblack: #565656;
+    --color-cusdarkgrey: #808080;
+    --color-cusgrey: #ABABAB;
+    --color-cuslightgrey: #DFDFDF;
+    --color-cuswhite: #F7F7F7;
+    --color-danger: #a6192e;
+    --color-caution: #ff9900;
+    --color-success: #04b34f;
+    --color-information: #0057b8;
+    --breakpoint-xs: 360px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+
+    --animate-marquee: marquee 40s linear infinite;
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+html {
+    font-family: var(--font-sans);
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}

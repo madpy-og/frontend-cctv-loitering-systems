@@ -1,5 +1,5 @@
 import apiClient from './client';
-import { SystemConfig, SystemConfigUpdate } from '../types/config';
+import type { SystemConfig, SystemConfigUpdate } from '../types/config';
 
 export const getConfig = async (): Promise<SystemConfig> => {
   const response = await apiClient.get<SystemConfig>('/config/');
