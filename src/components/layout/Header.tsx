@@ -15,14 +15,11 @@ export const Header: React.FC = () => {
   const currentRoute = routeInfo[location.pathname] || { title: 'CCTV Dashboard', description: '' };
 
   return (
-    <header className="h-20 bg-cuswhite border-b border-cuslightgrey flex items-center justify-between px-4 z-10 sticky top-0">
+    <header className="h-20 bg-cuswhite flex items-center justify-between px-4 z-10 sticky top-0">
 
       {/* Dynamic Page Header */}
       <div>
-        <h1 className="text-h6 font-serif font-semibold text-cusblack">{currentRoute.title}</h1>
-        {currentRoute.description && (
-          <p className="text-cuslightblack text-bs mt-0.5">{currentRoute.description}</p>
-        )}
+        <h1 className="text-h2 font-serif font-semibold text-cusblack">{currentRoute.title}</h1>
       </div>
 
       <div className="flex items-center gap-4">

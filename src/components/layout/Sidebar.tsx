@@ -39,18 +39,6 @@ export const Sidebar: React.FC = () => {
           </NavLink>
         ))}
       </nav>
-
-      <div className="p-4 border-t border-cuslightblack/30">
-        <div className="flex items-center gap-3 px-4 py-2">
-          <div className="w-8 h-8 rounded-full bg-cuswhite flex items-center justify-center text-sm font-bold text-cusblack">
-            AD
-          </div>
-          <div>
-            <p className="text-text-bs font-medium">Admin User</p>
-            <p className="text-text-capt text-cusgrey">System Administrator</p>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 };
