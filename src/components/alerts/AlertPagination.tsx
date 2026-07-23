@@ -22,7 +22,7 @@ export const AlertPagination: React.FC<AlertPaginationProps> = ({
 
   return (
     <div className="flex items-center justify-between px-6 py-4 border-t border-cuslightgrey bg-white">
-      <div className="flex items-center text-sm text-cuslightblack">
+      <div className="flex items-center text-bs text-cuslightblack">
         {totalFetched > 0 ? (
           <span>
             Showing <span className="font-medium text-cusblack">{startIdx}</span> to{' '}
@@ -35,12 +35,12 @@ export const AlertPagination: React.FC<AlertPaginationProps> = ({
       
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
-          <label htmlFor="limit" className="text-sm text-cuslightblack">Rows per page:</label>
+          <label htmlFor="limit" className="text-bs text-cuslightblack">Rows per page:</label>
           <select
             id="limit"
             value={limit}
             onChange={(e) => onLimitChange(Number(e.target.value))}
-            className="text-sm border-cuslightgrey rounded-md shadow-sm focus:ring-cusblue focus:border-cusblue"
+            className="text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information"
           >
             <option value={10}>10</option>
             <option value={25}>25</option>

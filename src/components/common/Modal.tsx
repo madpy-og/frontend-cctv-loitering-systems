@@ -47,7 +47,7 @@ export const Modal: React.FC<ModalProps> = ({
           <div className="flex justify-between items-center p-6 border-b border-cuslightgrey bg-cuswhite">
             <div>
               <h3 className="text-text-h6 font-bold text-cusblack">{title}</h3>
-              {subtitle && <p className="text-sm text-cuslightblack mt-0.5">{subtitle}</p>}
+              {subtitle && <p className="text-bs text-cuslightblack mt-0.5">{subtitle}</p>}
             </div>
             <IconButton 
               onClick={onClose}

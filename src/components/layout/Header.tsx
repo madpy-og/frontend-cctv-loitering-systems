@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
       <div>
         <h1 className="text-h6 font-serif font-semibold text-cusblack">{currentRoute.title}</h1>
         {currentRoute.description && (
-          <p className="text-cuslightblack text-sm mt-0.5">{currentRoute.description}</p>
+          <p className="text-cuslightblack text-bs mt-0.5">{currentRoute.description}</p>
         )}
       </div>
 

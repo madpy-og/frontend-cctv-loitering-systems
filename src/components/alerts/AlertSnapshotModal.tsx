@@ -17,11 +17,11 @@ export const AlertSnapshotModal: React.FC<AlertSnapshotModalProps> = ({ isOpen, 
       subtitle={`Alert #${alertId}`}
       maxWidth="4xl"
     >
-      <div className="p-1 bg-gray-50 flex justify-center items-center min-h-[300px]">
+      <div className="p-1 bg-cuslightgrey/20 flex justify-center items-center min-h-[300px]">
         <img 
           src={getAlertSnapshotUrl(alertId)} 
           alt={`Snapshot for alert ${alertId}`}
-          className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-sm border border-gray-200"
+          className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-sm border border-cuslightgrey"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null; // Prevent infinite loop

@@ -89,10 +89,10 @@ export const ConfigForm: React.FC = () => {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-6">
             <div className="flex-1">
-              <label htmlFor="loiteringThreshold" className="block text-sm font-medium text-cusblack">
+              <label htmlFor="loiteringThreshold" className="block text-bs font-medium text-cusblack">
                 Loitering Threshold (seconds)
               </label>
-              <p className="text-xs text-cuslightblack mt-1">
+              <p className="text-capt text-cuslightblack mt-1">
                 The continuous time a person must remain in a zone before triggering an alert.
               </p>
             </div>
@@ -103,23 +103,23 @@ export const ConfigForm: React.FC = () => {
                 min="1"
                 value={loiteringThreshold}
                 onChange={(e) => setLoiteringThreshold(e.target.value)}
-                className="w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-cusblue focus:border-cusblue transition-shadow hover:border-gray-400 pl-3 pr-10 py-2"
+                className="w-full text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
                 required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <span className="text-gray-500 sm:text-sm">sec</span>
+                <span className="text-cusgrey sm:text-bs">sec</span>
               </div>
             </div>
           </div>
 
-          <hr className="border-gray-100" />
+          <hr className="border-cuslightgrey" />
 
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-6">
             <div className="flex-1">
-              <label htmlFor="gracePeriod" className="block text-sm font-medium text-cusblack">
+              <label htmlFor="gracePeriod" className="block text-bs font-medium text-cusblack">
                 Grace Period (seconds)
               </label>
-              <p className="text-xs text-cuslightblack mt-1">
+              <p className="text-capt text-cuslightblack mt-1">
                 The cooldown time after an alert before the same person can trigger another alert.
               </p>
             </div>
@@ -130,11 +130,11 @@ export const ConfigForm: React.FC = () => {
                 min="0"
                 value={gracePeriod}
                 onChange={(e) => setGracePeriod(e.target.value)}
-                className="w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-cusblue focus:border-cusblue transition-shadow hover:border-gray-400 pl-3 pr-10 py-2"
+                className="w-full text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
                 required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <span className="text-gray-500 sm:text-sm">sec</span>
+                <span className="text-cusgrey sm:text-bs">sec</span>
               </div>
             </div>
           </div>
