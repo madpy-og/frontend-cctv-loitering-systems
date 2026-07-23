@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { usePolling } from '../../hooks/usePolling';
 import { AlertTriangle, Clock, Map } from 'lucide-react';
 import { getAlerts, getAlertSnapshotUrl } from '../../api/alertsApi';
 import type { Alert } from '../../types/alert';
+import { formatTime, formatDuration } from '../../utils/format';
 import { Badge } from '../common/Badge';
 import { Card, CardHeader } from '../common/Card';
 import { EmptyState } from '../common/EmptyState';
@@ -11,22 +13,18 @@ export const RecentAlertsCard: React.FC = () => {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchAlerts = async () => {
-      try {
-        const data = await getAlerts(5);
-        setAlerts(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error('Failed to fetch alerts', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchAlerts = async () => {
+    try {
+      const data = await getAlerts(5);
+      setAlerts(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error('Failed to fetch alerts', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    fetchAlerts();
-    const interval = setInterval(fetchAlerts, 10000);
-    return () => clearInterval(interval);
-  }, []);
+  usePolling(fetchAlerts, 10000, []);
 
   return (
     <Card className="flex flex-col h-full">
@@ -66,13 +64,13 @@ export const RecentAlertsCard: React.FC = () => {
                     Zone {alert.zone_id || 'Unknown'}
                   </p>
                   <span className="text-text-capt text-cusdarkgrey font-medium whitespace-nowrap ml-2">
-                    {alert.timestamp ? new Date(alert.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '--:--:--'}
+                    {formatTime(alert.timestamp)}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 mt-1 text-text-capt text-cusdarkgrey">
                   <span className="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded border border-cuslightgrey">
                     <Clock size={10} />
-                    {(alert.duration ?? 0).toFixed(1)}s
+                    {formatDuration(alert.duration ?? 0)}
                   </span>
                   <span className="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded border border-cuslightgrey">
                     <Map size={10} />

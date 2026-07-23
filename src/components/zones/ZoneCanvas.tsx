@@ -1,6 +1,7 @@
 import React, { useRef, type MouseEvent } from 'react';
 import type { Zone, ZonePoint } from '../../types/zone';
 import { getVideoFeedUrl } from '../../api/videoApi';
+import { ZONE_COLORS } from '../../constants/colors';
 
 interface ZoneCanvasProps {
   zones: Zone[];
@@ -77,13 +78,11 @@ export const ZoneCanvas: React.FC<ZoneCanvasProps> = ({
             <polygon
               key={zone.id}
               points={pointsString}
-              className={`transition-all duration-300 ${
-                !zone.is_active 
-                  ? 'fill-[#808080]/10 stroke-[#808080]/50' 
-                  : isHovered
-                    ? 'fill-[#F7F7F7]/20 stroke-[#F7F7F7]'
-                    : 'fill-[#DFDFDF]/10 stroke-[#DFDFDF]/70'
-              }`}
+              className="transition-all duration-300"
+              style={{
+                fill: !zone.is_active ? ZONE_COLORS.inactive.fill : (isHovered ? ZONE_COLORS.hovered.fill : ZONE_COLORS.active.fill),
+                stroke: !zone.is_active ? ZONE_COLORS.inactive.stroke : (isHovered ? ZONE_COLORS.hovered.stroke : ZONE_COLORS.active.stroke)
+              }}
               strokeWidth={isHovered ? "0.6" : "0.3"}
               vectorEffect="non-scaling-stroke"
             />

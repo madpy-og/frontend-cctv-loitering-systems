@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { usePolling } from '../hooks/usePolling';
 import { AlertTable } from '../components/alerts/AlertTable';
 import { AlertSnapshotModal } from '../components/alerts/AlertSnapshotModal';
 import { AlertPagination } from '../components/alerts/AlertPagination';
@@ -38,13 +39,10 @@ export const AlertsPage: React.FC = () => {
   }, [page, limit]);
 
   // Auto-polling every 10 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Fetch without triggering full loading spinner
-      fetchAlerts(false);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [page, limit]);
+  usePolling(() => {
+    // Fetch without triggering full loading spinner
+    fetchAlerts(false);
+  }, 10000, [page, limit]);
 
   return (
     <div className="h-full flex flex-col">

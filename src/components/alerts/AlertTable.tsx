@@ -5,6 +5,7 @@ import { Badge } from '../common/Badge';
 import { EmptyState } from '../common/EmptyState';
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import { Camera, AlertTriangle } from 'lucide-react';
+import { formatDuration, formatDateTime } from '../../utils/format';
 
 interface AlertTableProps {
   alerts: Alert[];
@@ -13,25 +14,6 @@ interface AlertTableProps {
 }
 
 export const AlertTable: React.FC<AlertTableProps> = ({ alerts, isLoading, onViewSnapshot }) => {
-  const formatDuration = (seconds: number) => {
-    if (seconds < 60) return `${Math.round(seconds)}s`;
-    const m = Math.floor(seconds / 60);
-    const s = Math.round(seconds % 60);
-    return s > 0 ? `${m}m ${s}s` : `${m}m`;
-  };
-
-  const formatDate = (isoString: string) => {
-    const date = new Date(isoString);
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    }).format(date);
-  };
-
   if (isLoading && alerts.length === 0) {
     return (
       <div className="w-full flex justify-center items-center p-12">
@@ -69,7 +51,7 @@ export const AlertTable: React.FC<AlertTableProps> = ({ alerts, isLoading, onVie
           {alerts.map((alert) => (
             <tr key={alert.id} className="hover:bg-slate-50 transition-colors duration-150">
               <td className="py-4 px-6 text-sm text-cusblack whitespace-nowrap">
-                {formatDate(alert.timestamp)}
+                {formatDateTime(alert.timestamp)}
               </td>
               <td className="py-4 px-6 text-sm text-cusblack">
                 <Badge variant="default" className="bg-gray-100 text-gray-800">

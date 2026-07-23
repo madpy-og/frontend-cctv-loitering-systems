@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { usePolling } from '../../hooks/usePolling';
 import { Activity, Server, Target } from 'lucide-react';
 import { getStatus } from '../../api/statusApi';
 import type { StatusResponse } from '../../types/status';
@@ -10,21 +11,17 @@ export const SystemStatusCard: React.FC = () => {
   const [status, setStatus] = useState<StatusResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchStatus = async () => {
-      try {
-        const data = await getStatus();
-        setStatus(data);
-        setError(null);
-      } catch (err) {
-        setError('Failed to fetch status');
-      }
-    };
+  const fetchStatus = async () => {
+    try {
+      const data = await getStatus();
+      setStatus(data);
+      setError(null);
+    } catch (err) {
+      setError('Failed to fetch status');
+    }
+  };
 
-    fetchStatus();
-    const interval = setInterval(fetchStatus, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  usePolling(fetchStatus, 5000, []);
 
   return (
     <Card>
