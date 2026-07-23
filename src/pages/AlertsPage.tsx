@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { PageHeader } from '../components/common/PageHeader';
 import { AlertTable } from '../components/alerts/AlertTable';
 import { AlertSnapshotModal } from '../components/alerts/AlertSnapshotModal';
 import { AlertPagination } from '../components/alerts/AlertPagination';
@@ -48,12 +47,8 @@ export const AlertsPage: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <PageHeader 
-        title="Alert History" 
-        description="Review past loitering incidents" 
-      />
       
-      <div className="flex-1 bg-white rounded-2xl shadow-sm border border-cuslightgrey flex flex-col overflow-hidden mb-4">
+      <div className="flex-1 bg-white rounded-2xl shadow-sm border border-cuslightgrey flex flex-col overflow-hidden">
         {/* Main Content Area: Table */}
         <div className="flex-1 overflow-auto">
           <AlertTable 

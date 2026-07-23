@@ -12,7 +12,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside className="w-64 h-[calc(100vh-2rem)] m-4 rounded-3xl bg-cusblack text-cuswhite flex flex-col shadow-xl overflow-hidden">
-      <div className="p-6 flex items-center gap-3">
+      <div className="p-6 flex justify-center items-center gap-3">
         <h1 className="font-serif text-h5 font-semibold tracking-wide">CCTV Dashboard</h1>
       </div>
 

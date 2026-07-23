@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { PageHeader } from '../components/common/PageHeader';
 import { ZoneCanvas } from '../components/zones/ZoneCanvas';
 import { ZoneCanvasToolbar } from '../components/zones/ZoneCanvasToolbar';
 import { ZoneList } from '../components/zones/ZoneList';
@@ -94,12 +93,8 @@ export const ZonesPage: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <PageHeader 
-        title="Zone Editor" 
-        description="Configure monitoring zones and rules" 
-      />
       
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-hidden pb-4">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-hidden">
         {/* Main Canvas Area */}
         <div className="lg:col-span-2 h-full flex flex-col min-h-[400px]">
           <ZoneCanvas 

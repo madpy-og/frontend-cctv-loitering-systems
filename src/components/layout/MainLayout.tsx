@@ -10,7 +10,7 @@ export const MainLayout: React.FC = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#F7F7F7] p-8">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#F7F7F7] p-4">
           <div className="max-w-7xl mx-auto h-full">
             <Outlet />
           </div>
