@@ -103,7 +103,7 @@ export const ConfigForm: React.FC = () => {
                 min="1"
                 value={loiteringThreshold}
                 onChange={(e) => setLoiteringThreshold(e.target.value)}
-                className="w-full text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
+                className="w-full text-bs border-cuslightgrey rounded-xl focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
                 required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -130,7 +130,7 @@ export const ConfigForm: React.FC = () => {
                 min="0"
                 value={gracePeriod}
                 onChange={(e) => setGracePeriod(e.target.value)}
-                className="w-full text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
+                className="w-full text-bs border-cuslightgrey rounded-xl focus:ring-information focus:border-information transition-shadow hover:border-cusgrey pl-3 pr-10 py-2"
                 required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -146,7 +146,7 @@ export const ConfigForm: React.FC = () => {
             disabled={isSaving}
             isLoading={isSaving}
             variant="primary"
-            className="bg-information hover:bg-information/90 border-transparent shadow-sm px-6 py-2"
+            className="bg-information hover:bg-information/90 border-transparent px-6 py-2"
           >
             Save Changes
           </Button>

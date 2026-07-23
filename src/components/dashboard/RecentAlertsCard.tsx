@@ -28,7 +28,7 @@ export const RecentAlertsCard: React.FC = () => {
 
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader 
+      <CardHeader
         title="Recent Alerts"
         icon={<AlertTriangle size={20} />}
         action={
@@ -39,12 +39,11 @@ export const RecentAlertsCard: React.FC = () => {
         }
       />
 
-      <div className="flex-1 overflow-y-auto pr-2 -mr-2 space-y-3">
+      <div className="flex-1 min-h-0 overflow-y-auto pr-2 -mr-2 space-y-3">
         {isLoading && alerts.length === 0 ? (
           <Skeleton variant="card" count={3} />
         ) : !isLoading && alerts.length === 0 ? (
-          <EmptyState 
-            icon={<AlertTriangle size={32} />}
+          <EmptyState
             title="No recent alerts"
             description="System is monitoring all zones"
           />

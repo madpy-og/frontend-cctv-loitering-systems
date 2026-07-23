@@ -8,12 +8,12 @@ export const LiveVideoFeed: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Card padding={false} className="flex flex-col h-full bg-cusblack border-cusblack rounded-2xl shadow-xl overflow-hidden group">
+    <Card padding={false} className="flex flex-col h-full bg-cusblack border-cusblack rounded-2xl overflow-hidden group">
       {/* Header overlay */}
       <div className="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-cusblack/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <CardHeader
           title="Live Camera Feed"
-          icon={<div className="w-2.5 h-2.5 bg-danger rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>}
+          icon={<div className="w-2.5 h-2.5 bg-danger rounded-full animate-pulse"></div>}
           className="mb-0 text-white"
         />
       </div>

@@ -42,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({
       />
       
       {/* Modal Content */}
-      <div className={`relative bg-white rounded-2xl shadow-xl w-full ${maxWidthClasses[maxWidth]} overflow-hidden animate-in fade-in zoom-in duration-200 border border-cuslightgrey`}>
+      <div className={`relative bg-white rounded-2xl w-full ${maxWidthClasses[maxWidth]} overflow-hidden animate-in fade-in zoom-in duration-200 border border-cuslightgrey`}>
         {title && (
           <div className="flex justify-between items-center p-6 border-b border-cuslightgrey bg-cuswhite">
             <div>

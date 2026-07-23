@@ -40,7 +40,7 @@ export const ZoneCanvas: React.FC<ZoneCanvasProps> = ({
     <div 
       ref={containerRef}
       className={`relative w-full aspect-video bg-cusblack rounded-2xl overflow-hidden border transition-colors ${
-        isDrawing ? 'border-cusdarkgrey cursor-crosshair shadow-[0_0_15px_rgba(128,128,128,0.2)]' : 'border-cuslightgrey'
+        isDrawing ? 'border-cusdarkgrey cursor-crosshair' : 'border-cuslightgrey'
       }`}
       onClick={handleCanvasClick}
     >

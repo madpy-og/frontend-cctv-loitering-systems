@@ -40,7 +40,7 @@ export const AlertPagination: React.FC<AlertPaginationProps> = ({
             id="limit"
             value={limit}
             onChange={(e) => onLimitChange(Number(e.target.value))}
-            className="text-bs border-cuslightgrey rounded-xl shadow-sm focus:ring-information focus:border-information"
+            className="text-bs border-cuslightgrey rounded-xl focus:ring-information focus:border-information"
           >
             <option value={10}>10</option>
             <option value={25}>25</option>

@@ -21,7 +21,7 @@ export const AlertSnapshotModal: React.FC<AlertSnapshotModalProps> = ({ isOpen, 
         <img 
           src={getAlertSnapshotUrl(alertId)} 
           alt={`Snapshot for alert ${alertId}`}
-          className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-sm border border-cuslightgrey"
+          className="max-w-full max-h-[70vh] object-contain rounded-lg border border-cuslightgrey"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null; // Prevent infinite loop

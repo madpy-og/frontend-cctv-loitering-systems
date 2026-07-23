@@ -8,9 +8,9 @@ export interface CardProps {
 
 export const Card: React.FC<CardProps> = ({ children, padding = true, className = '' }) => {
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border border-cuslightgrey overflow-hidden flex flex-col ${className}`}>
+    <div className={`bg-white rounded-2xl border border-cuslightgrey overflow-hidden flex flex-col ${className}`}>
       {padding ? (
-        <div className="p-6 h-full flex flex-col">
+        <div className="p-6 h-full flex flex-col min-h-0">
           {children}
         </div>
       ) : (

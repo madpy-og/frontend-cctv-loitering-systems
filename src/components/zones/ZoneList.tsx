@@ -47,7 +47,7 @@ export const ZoneList: React.FC<ZoneListProps> = ({
               key={zone.id}
               className={`p-4 rounded-xl border transition-all cursor-default ${
                 hoveredZoneId === zone.id 
-                  ? 'border-cusdarkgrey bg-cuswhite shadow-sm' 
+                  ? 'border-cusdarkgrey bg-cuswhite' 
                   : 'border-cuslightgrey bg-white hover:border-cusdarkgrey/30'
               }`}
               onMouseEnter={() => setHoveredZoneId(zone.id)}

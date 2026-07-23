@@ -54,7 +54,7 @@ export const SystemStatusCard: React.FC = () => {
         <div className="space-y-4 flex-1">
           <div className="p-4 rounded-xl border border-cuslightgrey bg-cuswhite flex items-center justify-between transition-colors hover:border-cusdarkgrey/30">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-white border border-cuslightgrey rounded-lg shadow-sm">
+              <div className="p-2 bg-white border border-cuslightgrey rounded-lg">
                 <Server size={18} className="text-cusdarkgrey" />
               </div>
               <div>
@@ -66,7 +66,7 @@ export const SystemStatusCard: React.FC = () => {
 
           <div className="p-4 rounded-xl border border-cuslightgrey bg-cuswhite flex items-center justify-between transition-colors hover:border-cusdarkgrey/30">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-white border border-cuslightgrey rounded-lg shadow-sm">
+              <div className="p-2 bg-white border border-cuslightgrey rounded-lg">
                 <Target size={18} className="text-cusdarkgrey" />
               </div>
               <div>
