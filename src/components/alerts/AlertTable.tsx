@@ -1,5 +1,10 @@
 import React from 'react';
 import type { Alert } from '../../types/alert';
+import { Button } from '../common/Button';
+import { Badge } from '../common/Badge';
+import { EmptyState } from '../common/EmptyState';
+import { LoadingSpinner } from '../common/LoadingSpinner';
+import { Camera, AlertTriangle } from 'lucide-react';
 
 interface AlertTableProps {
   alerts: Alert[];
@@ -29,22 +34,20 @@ export const AlertTable: React.FC<AlertTableProps> = ({ alerts, isLoading, onVie
 
   if (isLoading && alerts.length === 0) {
     return (
-      <div className="w-full flex items-center justify-center p-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cusblue"></div>
+      <div className="w-full flex justify-center items-center p-12">
+        <LoadingSpinner size="lg" />
       </div>
     );
   }
 
   if (alerts.length === 0) {
     return (
-      <div className="w-full flex flex-col items-center justify-center p-12 text-center">
-        <div className="w-12 h-12 bg-cuslightgrey rounded-full flex items-center justify-center mb-3">
-          <svg className="w-6 h-6 text-cuslightblack" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-        </div>
-        <h3 className="text-text-body font-semibold text-cusblack">No Alerts Found</h3>
-        <p className="text-cuslightblack text-sm mt-1">There are no loitering incidents to display.</p>
+      <div className="p-8">
+        <EmptyState 
+          icon={<AlertTriangle size={48} className="text-gray-400 mx-auto mb-4" />}
+          title="No Alerts Found"
+          description="There are no loitering incidents to display."
+        />
       </div>
     );
   }
@@ -69,15 +72,15 @@ export const AlertTable: React.FC<AlertTableProps> = ({ alerts, isLoading, onVie
                 {formatDate(alert.timestamp)}
               </td>
               <td className="py-4 px-6 text-sm text-cusblack">
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                <Badge variant="default" className="bg-gray-100 text-gray-800">
                   #{alert.track_id}
-                </span>
+                </Badge>
               </td>
               <td className="py-4 px-6 text-sm text-cusblack">
                 {alert.zone_id ? (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                  <Badge variant="info">
                     Zone {alert.zone_id}
-                  </span>
+                  </Badge>
                 ) : (
                   <span className="text-gray-400 italic">Global</span>
                 )}
@@ -87,29 +90,26 @@ export const AlertTable: React.FC<AlertTableProps> = ({ alerts, isLoading, onVie
               </td>
               <td className="py-4 px-6 text-sm">
                 {alert.is_resolved ? (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  <Badge variant="success" shape="pill">
                     Resolved
-                  </span>
+                  </Badge>
                 ) : (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  <Badge variant="danger" shape="pill">
                     Active
-                  </span>
+                  </Badge>
                 )}
               </td>
               <td className="py-4 px-6 text-right">
-                <button
+                <Button
                   onClick={() => onViewSnapshot(alert.id)}
                   disabled={!alert.snapshot_path}
-                  className={`inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cusblue transition-colors
-                    ${alert.snapshot_path 
-                      ? 'bg-cusblue hover:bg-blue-600' 
-                      : 'bg-gray-300 cursor-not-allowed text-gray-500'}`}
+                  variant={alert.snapshot_path ? 'primary' : 'ghost'}
+                  size="sm"
+                  className={!alert.snapshot_path ? 'bg-cuslightgrey text-cusdarkgrey cursor-not-allowed opacity-60' : 'bg-information hover:bg-information/90'}
+                  leftIcon={<Camera size={16} />}
                 >
-                  <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
                   Snapshot
-                </button>
+                </Button>
               </td>
             </tr>
           ))}

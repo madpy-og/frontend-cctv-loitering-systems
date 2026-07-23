@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../common/Button';
 
 interface AlertPaginationProps {
   page: number;
@@ -49,26 +50,22 @@ export const AlertPagination: React.FC<AlertPaginationProps> = ({
         </div>
 
         <div className="flex space-x-2">
-          <button
+          <Button
             onClick={() => onPageChange(page - 1)}
             disabled={page === 1}
-            className={`px-3 py-1.5 border rounded-md text-sm font-medium transition-colors
-              ${page === 1 
-                ? 'border-gray-200 text-gray-400 cursor-not-allowed bg-gray-50' 
-                : 'border-cuslightgrey text-cusblack hover:bg-gray-50 bg-white'}`}
+            variant={page === 1 ? 'ghost' : 'secondary'}
+            size="sm"
           >
             Previous
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => onPageChange(page + 1)}
             disabled={!hasNextPage}
-            className={`px-3 py-1.5 border rounded-md text-sm font-medium transition-colors
-              ${!hasNextPage 
-                ? 'border-gray-200 text-gray-400 cursor-not-allowed bg-gray-50' 
-                : 'border-cuslightgrey text-cusblack hover:bg-gray-50 bg-white'}`}
+            variant={!hasNextPage ? 'ghost' : 'secondary'}
+            size="sm"
           >
             Next
-          </button>
+          </Button>
         </div>
       </div>
     </div>

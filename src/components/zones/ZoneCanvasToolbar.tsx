@@ -1,5 +1,6 @@
 import React from 'react';
 import { PenTool, X, Save } from 'lucide-react';
+import { Button } from '../common/Button';
 
 interface ZoneCanvasToolbarProps {
   isDrawing: boolean;
@@ -19,34 +20,30 @@ export const ZoneCanvasToolbar: React.FC<ZoneCanvasToolbarProps> = ({
   return (
     <div className="flex items-center gap-3 mt-4">
       {!isDrawing ? (
-        <button
+        <Button
           onClick={onStartDrawing}
-          className="flex items-center gap-2 px-4 py-2 bg-cusblack text-cuswhite rounded-xl hover:bg-cusdarkgrey transition-colors text-text-bs font-medium shadow-sm"
+          variant="primary"
+          leftIcon={<PenTool size={18} />}
         >
-          <PenTool size={18} />
           Draw New Zone
-        </button>
+        </Button>
       ) : (
         <>
-          <button
+          <Button
             onClick={onCancelDrawing}
-            className="flex items-center gap-2 px-4 py-2 bg-cuswhite text-cusblack border border-cuslightgrey rounded-xl hover:bg-cuslightgrey transition-colors text-text-bs font-medium"
+            variant="secondary"
+            leftIcon={<X size={18} />}
           >
-            <X size={18} />
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={onSaveDraft}
             disabled={!canSave}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-text-bs font-medium transition-colors ${
-              canSave 
-                ? 'bg-cusblack text-cuswhite hover:bg-cusdarkgrey shadow-sm' 
-                : 'bg-cuslightgrey text-cusdarkgrey cursor-not-allowed opacity-60'
-            }`}
+            variant="primary"
+            leftIcon={<Save size={18} />}
           >
-            <Save size={18} />
             Save Zone
-          </button>
+          </Button>
         </>
       )}
       

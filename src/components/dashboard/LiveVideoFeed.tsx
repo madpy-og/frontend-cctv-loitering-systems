@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CameraOff } from 'lucide-react';
+import { CameraOff, RefreshCw, Play, Settings2 } from 'lucide-react';
+import { Card, CardHeader } from '../common/Card';
 import { getVideoFeedUrl } from '../../api/videoApi';
 
 export const LiveVideoFeed: React.FC = () => {
@@ -7,12 +8,14 @@ export const LiveVideoFeed: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-cuslightgrey overflow-hidden h-full flex flex-col">
-      <div className="p-4 border-b border-cuslightgrey flex justify-between items-center bg-cuswhite">
-        <h2 className="text-text-bd font-semibold text-cusblack flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-cusblack animate-pulse"></span>
-          Live Camera Feed
-        </h2>
+    <Card padding={false} className="flex flex-col h-full bg-cusblack border-cusblack rounded-2xl shadow-xl overflow-hidden group">
+      {/* Header overlay */}
+      <div className="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-cusblack/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <CardHeader
+          title="Live Camera Feed"
+          icon={<div className="w-2.5 h-2.5 bg-danger rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>}
+          className="mb-0 text-white"
+        />
       </div>
       <div className="flex-1 relative flex items-center justify-center bg-cusblack min-h-[400px]">
         {isLoading && !hasError && (
@@ -40,6 +43,6 @@ export const LiveVideoFeed: React.FC = () => {
           />
         )}
       </div>
-    </div>
+    </Card>
   );
 };

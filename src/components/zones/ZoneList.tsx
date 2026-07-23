@@ -1,6 +1,10 @@
 import React from 'react';
 import { Map, Power, PowerOff, Trash2 } from 'lucide-react';
 import type { Zone } from '../../types/zone';
+import { IconButton } from '../common/Button';
+import { Badge } from '../common/Badge';
+import { Card, CardHeader } from '../common/Card';
+import { EmptyState } from '../common/EmptyState';
 
 interface ZoneListProps {
   zones: Zone[];
@@ -18,21 +22,25 @@ export const ZoneList: React.FC<ZoneListProps> = ({
   onDelete
 }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-cuslightgrey p-6 flex flex-col h-full">
-      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-cuslightgrey">
-        <Map size={20} className="text-cusblack" />
-        <h3 className="text-text-bd font-semibold text-cusblack">Configured Zones</h3>
-        <span className="ml-auto bg-cuslightgrey text-cusdarkgrey text-text-capt px-2 py-0.5 rounded-full font-bold">
-          {zones.length}
-        </span>
-      </div>
+    <Card className="flex flex-col h-full">
+      <CardHeader 
+        title="Configured Zones"
+        icon={<Map size={20} />}
+        action={
+          <Badge variant="default" shape="pill" className="ml-auto px-2 py-0.5 text-cusdarkgrey font-bold">
+            {zones.length}
+          </Badge>
+        }
+        className="mb-6 pb-4 border-b border-cuslightgrey"
+      />
 
       <div className="flex-1 overflow-y-auto pr-2 -mr-2 space-y-3">
         {zones.length === 0 ? (
-          <div className="text-center text-cusdarkgrey py-8 border-2 border-dashed border-cuslightgrey rounded-xl">
-            <p className="text-text-bs font-medium">No zones configured.</p>
-            <p className="text-text-capt mt-1">Draw a new zone on the canvas.</p>
-          </div>
+          <EmptyState 
+            icon={<Map size={32} />}
+            title="No zones configured"
+            description="Use the map toolbar to draw and save zones for monitoring."
+          />
         ) : (
           zones.map((zone) => (
             <div 
@@ -53,24 +61,24 @@ export const ZoneList: React.FC<ZoneListProps> = ({
                   </p>
                 </div>
                 <div className="flex gap-1">
-                  <button
+                  <IconButton
                     onClick={() => onToggleActive(zone)}
-                    className={`p-1.5 rounded-lg border border-cuslightgrey transition-colors ${
-                      zone.is_active 
-                        ? 'text-cusblack bg-cuswhite hover:border-cusdarkgrey' 
-                        : 'text-cusdarkgrey bg-white hover:border-cusdarkgrey'
-                    }`}
+                    icon={zone.is_active ? <Power size={14} /> : <PowerOff size={14} />}
+                    aria-label={zone.is_active ? "Deactivate Zone" : "Activate Zone"}
                     title={zone.is_active ? "Deactivate Zone" : "Activate Zone"}
-                  >
-                    {zone.is_active ? <Power size={14} /> : <PowerOff size={14} />}
-                  </button>
-                  <button
+                    variant="secondary"
+                    size="sm"
+                    className={`rounded-lg ${zone.is_active ? 'text-cusblack bg-cuswhite' : 'text-cusdarkgrey bg-white'}`}
+                  />
+                  <IconButton
                     onClick={() => onDelete(zone.id)}
-                    className="p-1.5 rounded-lg text-cusdarkgrey border border-cuslightgrey bg-white hover:border-cusdarkgrey hover:text-cusblack transition-colors"
+                    icon={<Trash2 size={14} />}
+                    aria-label="Delete Zone"
                     title="Delete Zone"
-                  >
-                    <Trash2 size={14} />
-                  </button>
+                    variant="secondary"
+                    size="sm"
+                    className="rounded-lg text-cusdarkgrey bg-white hover:text-danger hover:border-danger/30"
+                  />
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -83,6 +91,6 @@ export const ZoneList: React.FC<ZoneListProps> = ({
           ))
         )}
       </div>
-    </div>
+    </Card>
   );
 };

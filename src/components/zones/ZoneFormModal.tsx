@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { Button } from '../common/Button';
+import { Modal } from '../common/Modal';
 
 interface ZoneFormModalProps {
   isOpen: boolean;
@@ -25,18 +26,13 @@ export const ZoneFormModal: React.FC<ZoneFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cusblack/50 backdrop-blur-sm transition-all">
-      <div className="bg-white rounded-2xl shadow-xl border border-cuslightgrey w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
-        <div className="flex justify-between items-center p-6 border-b border-cuslightgrey bg-cuswhite">
-          <h3 className="text-text-h6 font-bold text-cusblack">Save New Zone</h3>
-          <button 
-            onClick={onClose}
-            className="text-cusdarkgrey hover:text-cusblack transition-colors"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="p-6">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Save New Zone"
+      maxWidth="md"
+    >
+      <form onSubmit={handleSubmit} className="p-6">
           <div className="mb-8">
             <label htmlFor="zoneName" className="block text-text-bs font-medium text-cusdarkgrey mb-2">
               Zone Name
@@ -53,23 +49,24 @@ export const ZoneFormModal: React.FC<ZoneFormModalProps> = ({
             />
           </div>
           <div className="flex justify-end gap-3">
-            <button
+            <Button
               type="button"
               onClick={onClose}
-              className="px-6 py-2.5 rounded-xl border border-cuslightgrey text-cusblack font-medium hover:bg-cuslightgrey transition-colors"
+              variant="secondary"
+              size="lg"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={!name.trim()}
-              className="px-6 py-2.5 rounded-xl bg-cusblack text-cuswhite font-medium hover:bg-cusdarkgrey transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              variant="primary"
+              size="lg"
             >
               Save Zone
-            </button>
+            </Button>
           </div>
         </form>
-      </div>
-    </div>
+    </Modal>
   );
 };

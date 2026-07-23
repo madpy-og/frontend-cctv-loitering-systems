@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bell } from 'lucide-react';
+import { IconButton } from '../common/Button';
 import { useLocation } from 'react-router';
 
 const routeInfo: Record<string, { title: string; description: string }> = {
@@ -24,12 +25,14 @@ export const Header: React.FC = () => {
         )}
       </div>
 
-      {/* Actions */}
       <div className="flex items-center gap-4">
-        <button className="relative p-2 rounded-full hover:bg-cuslightgrey transition-colors text-cusblack">
-          <Bell size={20} />
+        <IconButton
+          icon={<Bell size={20} />}
+          aria-label="Notifications"
+          className="rounded-full relative"
+        >
           <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-cusdarkgrey rounded-full border-2 border-cuswhite"></span>
-        </button>
+        </IconButton>
       </div>
     </header>
   );

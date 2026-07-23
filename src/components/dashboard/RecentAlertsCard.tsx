@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { AlertTriangle, Clock, Map } from 'lucide-react';
 import { getAlerts, getAlertSnapshotUrl } from '../../api/alertsApi';
 import type { Alert } from '../../types/alert';
+import { Badge } from '../common/Badge';
+import { Card, CardHeader } from '../common/Card';
+import { EmptyState } from '../common/EmptyState';
+import { Skeleton } from '../common/LoadingSpinner';
 
 export const RecentAlertsCard: React.FC = () => {
   const [alerts, setAlerts] = useState<Alert[]>([]);
@@ -25,36 +29,27 @@ export const RecentAlertsCard: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-cuslightgrey p-6 flex flex-col h-full">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-text-bd font-semibold text-cusblack flex items-center gap-2">
-          <AlertTriangle size={20} className="text-cusblack" />
-          Recent Alerts
-        </h3>
-        <span className="text-text-capt text-cusdarkgrey bg-cuslightgrey border border-cuslightgrey px-2 py-0.5 rounded-md flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-cusdarkgrey animate-pulse"></span>
-          Live
-        </span>
-      </div>
+    <Card className="flex flex-col h-full">
+      <CardHeader 
+        title="Recent Alerts"
+        icon={<AlertTriangle size={20} />}
+        action={
+          <Badge variant="default" className="text-cusdarkgrey px-2 py-0.5 font-medium tracking-normal normal-case border-cuslightgrey">
+            <span className="w-1.5 h-1.5 rounded-full bg-cusdarkgrey animate-pulse mr-1"></span>
+            Live
+          </Badge>
+        }
+      />
 
       <div className="flex-1 overflow-y-auto pr-2 -mr-2 space-y-3">
         {isLoading && alerts.length === 0 ? (
-          <div className="animate-pulse space-y-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-3 items-center p-3 border border-cuslightgrey rounded-xl">
-                <div className="w-12 h-12 bg-cuslightgrey/50 rounded-lg"></div>
-                <div className="flex-1 space-y-2">
-                  <div className="h-3 bg-cuslightgrey/50 rounded w-3/4"></div>
-                  <div className="h-3 bg-cuslightgrey/50 rounded w-1/2"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : !Array.isArray(alerts) || alerts.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-cusdarkgrey py-8">
-            <AlertTriangle size={32} className="mb-2 opacity-50" />
-            <p className="text-text-bs font-medium">No recent alerts</p>
-          </div>
+          <Skeleton variant="card" count={3} />
+        ) : !isLoading && alerts.length === 0 ? (
+          <EmptyState 
+            icon={<AlertTriangle size={32} />}
+            title="No recent alerts"
+            description="System is monitoring all zones"
+          />
         ) : (
           alerts.map((alert) => (
             <div key={alert.id} className="flex gap-3 items-center p-3 border border-cuslightgrey bg-cuswhite rounded-xl hover:border-cusdarkgrey/30 transition-colors group">
@@ -89,6 +84,6 @@ export const RecentAlertsCard: React.FC = () => {
           ))
         )}
       </div>
-    </div>
+    </Card>
   );
 };

@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { AlertTable } from '../components/alerts/AlertTable';
 import { AlertSnapshotModal } from '../components/alerts/AlertSnapshotModal';
 import { AlertPagination } from '../components/alerts/AlertPagination';
+import { Card } from '../components/common/Card';
 import { getAlerts } from '../api/alertsApi';
 import type { Alert } from '../types/alert';
 
@@ -47,8 +48,7 @@ export const AlertsPage: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
-      
-      <div className="flex-1 bg-white rounded-2xl shadow-sm border border-cuslightgrey flex flex-col overflow-hidden">
+      <Card padding={false} className="flex-1 overflow-hidden">
         {/* Main Content Area: Table */}
         <div className="flex-1 overflow-auto">
           <AlertTable 
@@ -69,7 +69,7 @@ export const AlertsPage: React.FC = () => {
             setPage(1); // Reset to first page when limit changes
           }}
         />
-      </div>
+      </Card>
 
       <AlertSnapshotModal 
         isOpen={selectedAlertId !== null}

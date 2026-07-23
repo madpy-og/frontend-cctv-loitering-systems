@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Activity, Server, Target } from 'lucide-react';
 import { getStatus } from '../../api/statusApi';
 import type { StatusResponse } from '../../types/status';
+import { Badge } from '../common/Badge';
+import { Card, CardHeader } from '../common/Card';
+import { Skeleton } from '../common/LoadingSpinner';
 
 export const SystemStatusCard: React.FC = () => {
   const [status, setStatus] = useState<StatusResponse | null>(null);
@@ -24,33 +27,31 @@ export const SystemStatusCard: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-cuslightgrey p-6 flex flex-col h-full">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-text-bd font-semibold text-cusblack flex items-center gap-2">
-          <Activity size={20} className="text-cusblack" />
-          System Status
-        </h3>
-        {status?.pipeline_status === 'Active' ? (
-          <span className="px-3 py-1 bg-cuslightgrey border border-cusdarkgrey/20 rounded-full text-text-capt font-semibold text-cusblack uppercase tracking-wider">
-            Active
-          </span>
-        ) : (
-          <span className="px-3 py-1 bg-cuslightgrey border border-cusdarkgrey/20 rounded-full text-text-capt font-semibold text-cusdarkgrey uppercase tracking-wider">
-            Inactive
-          </span>
-        )}
-      </div>
+    <Card>
+      <CardHeader 
+        title="System Status" 
+        icon={<Activity size={20} />} 
+        action={
+          status?.pipeline_status === 'Active' ? (
+            <Badge variant="default" shape="pill">
+              Active
+            </Badge>
+          ) : (
+            <Badge variant="default" shape="pill" className="text-cusdarkgrey">
+              Inactive
+            </Badge>
+          )
+        }
+      />
 
       {error && !status ? (
         <div className="flex-1 flex items-center justify-center text-cusdarkgrey text-text-bs">
           {error}
         </div>
       ) : !status ? (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="animate-pulse w-full space-y-4">
-            <div className="h-14 bg-cuslightgrey/50 rounded-xl w-full"></div>
-            <div className="h-14 bg-cuslightgrey/50 rounded-xl w-full"></div>
-          </div>
+        <div className="flex-1 flex flex-col justify-center space-y-4 p-4">
+          <Skeleton height="h-[60px]" />
+          <Skeleton height="h-[60px]" />
         </div>
       ) : (
         <div className="space-y-4 flex-1">
@@ -79,6 +80,6 @@ export const SystemStatusCard: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 };
