@@ -1,6 +1,8 @@
 import React from 'react';
-
 import { PageHeader } from '../components/common/PageHeader';
+import { LiveVideoFeed } from '../components/dashboard/LiveVideoFeed';
+import { SystemStatusCard } from '../components/dashboard/SystemStatusCard';
+import { RecentAlertsCard } from '../components/dashboard/RecentAlertsCard';
 
 export const DashboardPage: React.FC = () => {
   return (
@@ -10,15 +12,20 @@ export const DashboardPage: React.FC = () => {
         description="System overview and live feed" 
       />
       
-      <div className="flex-1 bg-white rounded-2xl shadow-sm border border-cuslightgrey p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-cuslightgrey text-cusblack rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-hidden">
+        {/* Main Video Feed Area - takes up 2/3 of the width on large screens */}
+        <div className="lg:col-span-2 h-full min-h-[400px]">
+          <LiveVideoFeed />
+        </div>
+        
+        {/* Side Panel for Status and Alerts - takes up 1/3 of the width on large screens */}
+        <div className="flex flex-col gap-6 h-full overflow-hidden">
+          <div className="flex-none">
+            <SystemStatusCard />
           </div>
-          <h2 className="text-text-h5 font-semibold text-cusblack">Live View Pending</h2>
-          <p className="text-cuslightblack mt-2 max-w-md">The main dashboard layout and live video feed will be implemented here.</p>
+          <div className="flex-1 min-h-[300px]">
+            <RecentAlertsCard />
+          </div>
         </div>
       </div>
     </div>
